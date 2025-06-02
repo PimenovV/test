@@ -28,6 +28,7 @@ img {
 
 main {
     display: block;
+    /* padding-top: 75px; /* Moved to media query */
 }
 
 header {
@@ -38,6 +39,11 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 3px solid #1abc9c; /* Accent color border */
+    /* position: fixed; Moved to media query */
+    /* top: 0; Moved to media query */
+    /* left: 0; Moved to media query */
+    /* right: 0; Moved to media query */
+    /* z-index: 1000; Moved to media query */
 }
 
 header h1 {
@@ -281,6 +287,20 @@ footer a[href^="mailto:"]:hover {
 
 
 /* Responsive Design */
+@media (min-width: 769px) {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    main {
+        padding-top: 75px; /* Adjust if header height changes significantly */
+    }
+}
+
 @media (max-width: 992px) {
     #services ul li {
         flex-basis: calc(50% - 20px);
