@@ -299,6 +299,13 @@ footer a[href^="mailto:"]:hover {
     main {
         padding-top: 75px; /* Adjust if header height changes significantly */
     }
+
+    #introduction,
+    #services,
+    #portfolio,
+    #contact {
+        scroll-margin-top: 75px; /* Value should match main's padding-top or actual header height */
+    }
 }
 
 @media (max-width: 992px) {
