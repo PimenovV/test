@@ -1,81 +1,295 @@
-/* Basic CSS rules */
-body {
-    font-family: Arial, Verdana, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap');
+
+/* Global Adjustments */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: #333;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #34495e; /* Dark gray for text */
+    background-color: #ecf0f1; /* Light gray for page background */
+}
+
+main {
+    display: block;
 }
 
 header {
-    background-color: #f4f4f4;
-    color: #333;
-    padding: 1rem 0;
-    text-align: center;
+    background-color: #2c3e50; /* Deep blue */
+    color: #ecf0f1; /* Light gray for text */
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #1abc9c; /* Accent color border */
 }
 
 header h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #ecf0f1;
+    font-size: 2rem; /* Slightly larger */
+    font-weight: 700; /* Ensure it's bold */
     margin: 0;
 }
 
 nav ul {
-    padding: 0;
     list-style: none;
-    text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    display: inline-block;
+    margin-left: 30px; /* Increased spacing */
+}
+
+nav ul li:first-child {
+    margin-left: 0;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #ecf0f1;
+    font-weight: 700;
+    padding: 0.5rem 0.2rem; /* Adjusted padding */
+    display: block;
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
 }
 
 nav ul li a:hover {
-    color: #007bff; /* Change color on hover */
+    color: #1abc9c;
+    transform: translateY(-2px); /* Subtle lift */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2c3e50;
+    margin-top: 1em;
+    margin-bottom: 0.8em;
 }
 
 section {
-    padding: 20px;
-    margin: 20px 0;
-    border-bottom: 1px solid #eee; /* Simple separator */
+    padding: 40px 5%;
+    margin: 30px auto; /* Increased vertical margin */
+    background-color: #fff;
+    max-width: 960px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* Slightly softer shadow for sections */
+    border-radius: 5px; /* Consistent border radius for sections */
 }
 
 section h2 {
-    color: #333;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-size: 1.8rem; /* Ensure section titles are prominent */
+}
+
+/* Services Section Layout */
+#services ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 -10px;
+}
+
+#services ul li {
+    flex-basis: calc(33.333% - 20px);
+    margin: 10px;
+    padding: 25px; /* Increased padding */
+    background-color: #fff; /* Ensure white background */
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Card shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#services ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Portfolio Section Layout */
+#portfolio {
+    /* section styles apply */
+}
+
+#portfolio .portfolio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 -10px;
+}
+
+#portfolio .portfolio-item {
+    flex-basis: calc(50% - 20px);
+    margin: 10px;
+    padding: 25px; /* Increased padding */
+    background-color: #fff; /* Ensure white background */
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Card shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#portfolio .portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+#portfolio .portfolio-item p {
+    margin-bottom: 0.5em;
+}
+#portfolio .portfolio-item p:last-child {
+    margin-bottom: 0;
+}
+
+/* General Link Styles */
+a {
+    color: #1abc9c;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for all links */
+}
+
+a:hover {
+    color: #16a085;
+    text-decoration: underline;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #2c3e50;
+    color: #ecf0f1;
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 20px;
+    padding: 2rem 5%;
+    margin-top: 30px;
 }
 
 footer p {
-    margin: 0.5rem 0;
+    margin: 0.7rem 0; /* Slightly more margin for footer text */
+    font-family: 'Open Sans', sans-serif;
 }
 
 footer ul {
     list-style: none;
     padding: 0;
+    margin-top: 10px;
 }
 
 footer ul li {
-    display: inline;
-    margin-right: 10px;
+    display: inline-block;
+    margin: 0 10px;
 }
 
 footer ul li a {
-    color: #fff;
-    text-decoration: none;
+    color: #ecf0f1;
+    transition: color 0.3s ease; /* Added transition */
 }
 
 footer ul li a:hover {
+    color: #1abc9c;
     text-decoration: underline;
+}
+
+/* General links in footer, excluding specific styled ones like buttons */
+footer a {
+    color: #1abc9c; /* Default link color in footer */
+    transition: color 0.3s ease;
+}
+
+footer a:not(.contact-button-style):hover { /* Ensure default hover for non-button links */
+    color: #ecf0f1;
+    text-decoration: underline;
+}
+
+/* Contact Link/Button Styling */
+footer a[href^="mailto:"] { /* More specific selector if needed, or add a class */
+    padding: 10px 18px; /* Adjusted padding */
+    background-color: #1abc9c;
+    color: #fff; /* Text color for button */
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block; /* For padding to apply correctly */
+    margin-top: 10px; /* Space above the button */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer a[href^="mailto:"]:hover {
+    background-color: #16a085;
+    color: #f0f0f0; /* Slightly lighter text on hover */
+    text-decoration: none; /* Remove underline on hover for buttons */
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    #services ul li {
+        flex-basis: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1.5rem 5%; /* Adjusted padding */
+    }
+
+    header h1 {
+        margin-bottom: 1rem; /* More space for stacked layout */
+        font-size: 1.8rem;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 12px 0; /* Adjusted margin for stacked links */
+        margin-left: 0;
+    }
+    nav ul li a:hover {
+        transform: translateY(0); /* Disable lift on mobile for nav links if it feels odd */
+    }
+
+    #services ul li {
+        flex-basis: calc(100% - 20px);
+    }
+
+    #portfolio .portfolio-item {
+        flex-basis: calc(100% - 20px);
+    }
+
+    section {
+        padding: 30px 5%;
+        margin: 20px auto;
+    }
+    section h2 {
+        font-size: 1.6rem;
+    }
+
+    footer {
+        padding: 1.5rem 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+    nav ul li a {
+        padding: 0.4rem 0;
+    }
+    section h2 {
+        font-size: 1.4rem;
+    }
+    #services ul li, #portfolio .portfolio-item {
+        padding: 20px; /* Reduce padding on smallest screens */
+    }
+    footer a[href^="mailto:"] {
+        padding: 8px 15px; /* Smaller button on small screens */
+        font-size: 0.9rem;
+    }
 }
