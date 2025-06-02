@@ -297,7 +297,7 @@ footer a[href^="mailto:"]:hover {
     }
 
     main {
-        padding-top: 75px; /* Adjust if header height changes significantly */
+        padding-top: 50px; /* Adjust if header height changes significantly */
     }
 
     #introduction,
