@@ -1,6 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap');
 
-/* Global Adjustments */
+/* CSS Custom Properties (Variables) */
+:root {
+    --primary-color: #2c3e50;      /* Deep blue */
+    --secondary-color: #ecf0f1;    /* Light gray */
+    --accent-color: #1abc9c;       /* Teal */
+    --accent-hover-color: #16a085; /* Darker Teal */
+    --text-color-dark: #34495e;    /* Dark gray for body text */
+    --text-color-light: #ecf0f1;   /* Light gray for dark backgrounds */
+    --text-color-muted: #555;      /* Medium gray for secondary text */
+    --page-bg-color: #ecf0f1;      /* Light gray for page background */
+    --card-bg-color: #fff;         /* White for cards/sections */
+    --card-border-color: #e0e0e0;
+    --header-border-color: #1abc9c;
+
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+
+    --header-height: 75px; /* Approximate fixed header height */
+    --base-padding: 5%;
+    --section-padding: 40px;
+    --card-padding: 25px;
+    --border-radius: 5px;
+}
+
+/* Global Adjustments & Reset */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,11 +36,11 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
-    color: #34495e; /* Dark gray for text */
-    background-color: #ecf0f1; /* Light gray for page background */
+    color: var(--text-color-dark);
+    background-color: var(--page-bg-color);
 }
 
 /* Global Image Styling */
@@ -26,29 +50,42 @@ img {
     display: block; /* Removes extra space below inline images */
 }
 
-main {
-    display: block;
-    /* padding-top: 75px; /* Moved to media query */
+/* General Link Styles & Accessibility */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
+a:hover {
+    color: var(--accent-hover-color);
+    text-decoration: underline;
+}
+
+/* Enhanced focus styles for accessibility */
+a:focus,
+button:focus, /* Add button if you use it elsewhere */
+[tabindex="0"]:focus { /* For elements made focusable with tabindex */
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: var(--border-radius); /* Optional: helps outline follow element shape */
+}
+
+
+/* Header Styling */
 header {
-    background-color: #2c3e50; /* Deep blue */
-    color: #ecf0f1; /* Light gray for text */
-    padding: 1rem 5%;
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 1rem var(--base-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid #1abc9c; /* Accent color border */
-    /* position: fixed; Moved to media query */
-    /* top: 0; Moved to media query */
-    /* left: 0; Moved to media query */
-    /* right: 0; Moved to media query */
-    /* z-index: 1000; Moved to media query */
+    border-bottom: 3px solid var(--header-border-color);
 }
 
 header h1 {
-    font-family: 'Montserrat', sans-serif;
-    color: #ecf0f1;
+    font-family: var(--font-heading);
+    color: var(--text-color-light);
     font-size: 2rem;
     font-weight: 700;
     margin: 0;
@@ -58,20 +95,13 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-nav ul li {
-    display: inline-block;
-    margin-left: 30px;
-}
-
-nav ul li:first-child {
-    margin-left: 0;
+    display: flex; /* Use flex for easier spacing */
+    gap: 30px;     /* Spacing between nav items */
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #ecf0f1;
+    color: var(--text-color-light);
     font-weight: 700;
     padding: 0.5rem 0.2rem;
     display: block;
@@ -79,29 +109,34 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #1abc9c;
+    color: var(--accent-color);
     transform: translateY(-2px);
+}
+
+nav ul li a:focus { /* Custom focus for nav links on dark background */
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 1px;
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    color: #2c3e50;
+    font-family: var(--font-heading);
+    color: var(--primary-color); /* Use primary color for headings */
     margin-top: 1em;
     margin-bottom: 0.8em;
 }
 
+/* Section Base Styling */
 section {
-    padding: 40px 5%; /* This padding applies to the overall section box */
+    padding: var(--section-padding) var(--base-padding);
     margin: 30px auto;
-    background-color: #fff;
+    background-color: var(--card-bg-color);
     max-width: 960px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    border-radius: 5px;
+    border-radius: var(--border-radius);
 }
 
 section h2 {
-    color: #2c3e50;
     text-align: center;
     margin-bottom: 1.5em;
     font-size: 1.8rem;
@@ -109,7 +144,8 @@ section h2 {
 
 /* Introduction Section Styling */
 #introduction .about-container {
-    text-align: center; /* Keeps image above text and centered */
+    text-align: center; /* Center image and potentially text block */
+    /* If image and text were side-by-side: display: flex; align-items: center; gap: 20px; */
 }
 
 #introduction .profile-pic {
@@ -117,13 +153,16 @@ section h2 {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 20px;
+    margin: 0 auto 20px; /* Center profile pic */
+    border: 3px solid var(--accent-color); /* Optional accent border */
 }
 
 #introduction .about-container p {
-    /* text-align: left; /* Only if using flex side-by-side */
+    max-width: 700px; /* Constrain paragraph width for readability */
+    margin-left: auto;
+    margin-right: auto;
+    /* text-align: left; If you prefer left-aligned intro text under a centered image */
 }
-
 
 /* Services Section Layout */
 #services ul {
@@ -131,21 +170,21 @@ section h2 {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0 -10px; /* Counteract card margins for alignment */
+    justify-content: space-around; /* Or space-between, or center if preferred */
+    gap: 20px; /* Spacing between service cards */
 }
 
 #services ul li {
-    flex-basis: calc(33.333% - 20px);
-    margin: 10px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
+    flex-basis: calc(33.333% - 20px); /* Adjust for gap, or let flex-grow handle it */
+    /* For dynamic sizing with gap: flex-grow: 1; flex-basis: 280px; (example) */
+    min-width: 280px; /* Ensure cards don't get too squished before wrapping */
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
-    padding: 25px; /* Overall padding for the card content area */
-    /* overflow: hidden; /* Generally good but might not be needed if content fits well */
+    padding: var(--card-padding);
 }
 
 #services ul li:hover {
@@ -156,36 +195,44 @@ section h2 {
 #services ul li img {
     width: 60px;
     height: 60px;
-    object-fit: cover;
-    margin: 0 auto 15px; /* Centered above text, provides top padding for text implicitly */
-    border-radius: 5px;
+    object-fit: contain; /* Or 'cover' if icons are not square */
+    margin: 0 auto 15px;
+    border-radius: var(--border-radius); /* Optional if icons are square and full */
 }
 
-#services ul li .service-text-content {
-    /* No specific padding needed here if parent 'li' has padding: 25px and image margin handles top spacing */
-    /* If li padding was 0 on mobile, then this would need padding: 0 15px 15px; */
-    font-size: 0.95rem; /* Example: slightly smaller font for service text */
-    color: #555; /* Example: slightly lighter text color */
+#services ul li .service-text-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+#services ul li .service-text-content p {
+    font-size: 0.95rem;
+    color: var(--text-color-muted);
+    margin-bottom: 0;
 }
 
 /* Portfolio Section Layout */
 #portfolio .portfolio-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0 -10px; /* Counteract card margins */
+    justify-content: space-around; /* Or space-between / center */
+    gap: 20px; /* Spacing between portfolio items */
 }
 
 #portfolio .portfolio-item {
-    flex-basis: calc(50% - 20px);
-    margin: 10px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px; /* Card radius */
+    flex-basis: calc(50% - 20px); /* Adjust for gap */
+    /* For dynamic sizing with gap: flex-grow: 1; flex-basis: 300px; (example) */
+    min-width: 300px; /* Ensure cards don't get too squished before wrapping */
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Crucial for image border-radius and if image is flush */
-    padding: 0; /* Remove padding from the item itself, image will be flush */
+    overflow: hidden; /* Crucial for image border-radius */
+    display: flex; /* To make text content part grow if needed */
+    flex-direction: column; /* Stack image and text */
 }
 
 #portfolio .portfolio-item:hover {
@@ -195,84 +242,68 @@ section h2 {
 
 #portfolio .portfolio-item img {
     width: 100%;
-    /* height: 200px; /* Optional: Fixed height */
+    height: 220px; /* Optional: Fixed height for consistency */
     object-fit: cover;
-    margin-bottom: 0; /* Image is flush with content below it */
-    border-radius: 5px 5px 0 0; /* Match card radius at the top */
-    display: block; /* Ensure no extra space */
+    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Match card radius at the top */
 }
 
-#portfolio .portfolio-item p { /* This is the text content wrapper */
-    padding: 20px; /* Padding for the text content area inside the card */
-    font-size: 0.95rem;
-    color: #555;
+#portfolio .portfolio-item .portfolio-text-content { /* Renamed for clarity */
+    padding: 20px;
+    flex-grow: 1; /* Allows text content to fill space if cards have varying text length */
 }
-#portfolio .portfolio-item p:last-child {
+
+#portfolio .portfolio-item .portfolio-text-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+#portfolio .portfolio-item .portfolio-text-content p {
+    font-size: 0.95rem;
+    color: var(--text-color-muted);
     margin-bottom: 0;
 }
 
-
-/* General Link Styles */
-a {
-    color: #1abc9c;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #16a085;
-    text-decoration: underline;
-}
-
+/* Footer (Contact Section) Styling */
 footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
     text-align: center;
-    padding: 2rem 5%;
+    padding: 2rem var(--base-padding);
     margin-top: 30px;
+}
+
+footer h2 {
+    color: var(--text-color-light); /* Heading color in footer */
 }
 
 footer p {
     margin: 0.7rem 0;
-    font-family: 'Open Sans', sans-serif;
 }
 
-footer ul {
+footer ul { /* For potential social media icons list */
     list-style: none;
     padding: 0;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-footer ul li {
-    display: inline-block;
-    margin: 0 10px;
+footer ul li a { /* For social media icons/links in a list */
+    color: var(--text-color-light);
+    font-size: 1.5rem; /* Example size for icons */
 }
-
-footer ul li a {
-    color: #ecf0f1;
-    transition: color 0.3s ease;
-}
-
 footer ul li a:hover {
-    color: #1abc9c;
-    text-decoration: underline;
+    color: var(--accent-color);
+    text-decoration: none; /* Usually no underline for icons */
 }
 
-footer a {
-    color: #1abc9c;
-    transition: color 0.3s ease;
-}
-
-footer a:not(.contact-button-style):hover {
-    color: #ecf0f1;
-    text-decoration: underline;
-}
-
-footer a[href^="mailto:"] {
+footer a[href^="mailto:"] { /* Email link styled as a button */
     padding: 10px 18px;
-    background-color: #1abc9c;
-    color: #fff;
-    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: #fff; /* White text for better contrast on accent */
+    border-radius: var(--border-radius);
     text-decoration: none;
     display: inline-block;
     margin-top: 10px;
@@ -280,13 +311,28 @@ footer a[href^="mailto:"] {
 }
 
 footer a[href^="mailto:"]:hover {
-    background-color: #16a085;
-    color: #f0f0f0;
+    background-color: var(--accent-hover-color);
+    color: var(--text-color-light); /* Keep light or adjust as needed */
     text-decoration: none;
 }
 
+footer a:not([href^="mailto:"]):not(ul li a) { /* General links in footer, not mailto or social list items */
+    color: var(--accent-color); /* Maintain accent color for other links */
+}
+footer a:not([href^="mailto:"]):not(ul li a):hover {
+    color: var(--text-color-light); /* Hover to light on dark background */
+    text-decoration: underline;
+}
+
+footer .copyright {
+    font-size: 0.9em;
+    margin-top: 20px;
+    opacity: 0.8;
+}
 
 /* Responsive Design */
+
+/* Fixed Header for Larger Screens */
 @media (min-width: 769px) {
     header {
         position: fixed;
@@ -297,27 +343,31 @@ footer a[href^="mailto:"]:hover {
     }
 
     main {
-        padding-top: 50px; /* Adjust if header height changes significantly */
+        padding-top: var(--header-height); /* Use variable for fixed header height */
     }
 
     #introduction,
     #services,
     #portfolio,
-    #contact {
-        scroll-margin-top: 75px; /* Value should match main's padding-top or actual header height */
+    footer#contact { /* Target footer directly for scroll margin if it's the contact anchor */
+        scroll-margin-top: var(--header-height); /* Ensure correct offset for anchor links */
     }
 }
 
+/* Tablet - Adjusting card layouts */
 @media (max-width: 992px) {
     #services ul li {
-        flex-basis: calc(50% - 20px);
+        flex-basis: calc(50% - 20px); /* 2 cards per row */
     }
+    /* Portfolio items likely still fit well at 2 per row, if not adjust flex-basis here */
 }
 
+/* Mobile - Stacking elements, adjusting header, fonts */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-        padding: 1.5rem 5%;
+        padding: 1.5rem var(--base-padding);
+        /* Header is not fixed, so no specific height for padding-top on main needed here */
     }
 
     header h1 {
@@ -325,57 +375,63 @@ footer a[href^="mailto:"]:hover {
         font-size: 1.8rem;
     }
 
+    nav ul {
+        flex-direction: column; /* Stack nav items */
+        gap: 0; /* Reset gap, use margin for stacking */
+        width: 100%;
+        align-items: center;
+    }
     nav ul li {
-        display: block;
-        margin: 12px 0;
-        margin-left: 0;
+        margin: 8px 0;
+        width: 100%;
+        text-align: center;
+    }
+    nav ul li a {
+        padding: 0.8rem 0; /* Larger tap target */
     }
     nav ul li a:hover {
-        transform: translateY(0);
+        transform: translateY(0); /* Remove hover transform on mobile */
     }
-
-    #introduction .about-container { /* Ensure stacking and centering on mobile */
-        flex-direction: column;
-        align-items: center;
-        /* text-align: center; /* Already set from base */
-    }
-    #introduction .profile-pic { /* Re-center with margin for column layout */
-        margin: 0 auto 20px;
-    }
-
-    #services ul li {
-        flex-basis: calc(100% - 20px);
-        padding: 20px; /* Adjust padding for mobile if needed */
-    }
-    #services ul li img {
-        margin-bottom: 10px;
-    }
-    /* .service-text-content might not need specific mobile rules if li padding is adjusted */
-
-    #portfolio .portfolio-item {
-        flex-basis: calc(100% - 20px);
-    }
-    /* .portfolio-item p padding already set to 20px, which is fine for mobile */
 
     section {
-        padding: 30px 5%;
+        padding: 30px var(--base-padding);
         margin: 20px auto;
     }
     section h2 {
         font-size: 1.6rem;
     }
 
+    #services ul li,
+    #portfolio .portfolio-item {
+        flex-basis: 100%; /* Full width for cards on mobile */
+        margin-left: 0;
+        margin-right: 0;
+    }
+    /* Gap property on parent ul/container handles spacing already */
+
+    #services ul li {
+        padding: var(--card-padding);
+    }
+    #portfolio .portfolio-item img {
+        height: 200px; /* Adjust fixed image height for mobile if needed */
+    }
+    #portfolio .portfolio-item .portfolio-text-content {
+        padding: 15px;
+    }
+
     footer {
-        padding: 1.5rem 5%;
+        padding: 1.5rem var(--base-padding);
     }
 }
 
+/* Smaller Mobile - Further font size reductions, smaller elements */
 @media (max-width: 480px) {
+    :root { /* Adjust root font size or specific element sizes */
+        --section-padding: 25px;
+        --card-padding: 20px;
+    }
     header h1 {
         font-size: 1.6rem;
-    }
-    nav ul li a {
-        padding: 0.4rem 0;
     }
     section h2 {
         font-size: 1.4rem;
@@ -385,25 +441,23 @@ footer a[href^="mailto:"]:hover {
         height: 120px;
     }
 
-    #services ul li {
-        padding: 15px; /* Reduce padding on very small screens for service cards */
-    }
     #services ul li img {
         width: 50px;
         height: 50px;
-        margin-bottom:10px;
     }
-    #services ul li .service-text-content {
+    #services ul li .service-text-content h3 { font-size: 1rem; }
+    #services ul li .service-text-content p,
+    #portfolio .portfolio-item .portfolio-text-content p {
         font-size: 0.9rem;
     }
+    #portfolio .portfolio-item .portfolio-text-content h3 { font-size: 1rem; }
 
-    #portfolio .portfolio-item p { /* Text content in portfolio cards */
-        padding: 15px; /* Reduce padding on very small screens */
-        font-size: 0.9rem;
-    }
 
     footer a[href^="mailto:"] {
         padding: 8px 15px;
         font-size: 0.9rem;
+    }
+    footer p {
+        font-size: 0.95rem;
     }
 }
